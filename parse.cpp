@@ -87,6 +87,17 @@ std::vector<std::vector<char>> lex(char* cp,std::vector<char> splits,std::vector
 	if(current.size())tokens.push_back(current);
 	return tokens;
 };
+bool operator==(const std::vector<char>& v, char* c){
+	for(char ch:v){
+		if(*c == '\0' || ch != *c)return false;
+		c++;
+	}
+	if(*c != '\0')return false;
+	return true;
+}
+bool operator==(char* c,const std::vector<char>& v){
+	return operator==(v,c);
+}
 std::ostream& operator<<(std::ostream& os,std::vector<std::vector<char>> v){
 	os << "{";
 	if(v.size())for(auto ch:v[0])os << "\"" << ch << "\"";
@@ -99,6 +110,14 @@ std::ostream& operator<<(std::ostream& os,std::vector<std::vector<char>> v){
 	os << "}";
 	return os;
 }
+/*
+TreeNode& parse(const std::vector<std::vector<char>& v){
+	TreeNode root;
+	for(std::vector<char> token : v){
+
+	}
+}
+*/
 #endif
 #ifdef TEST
 /*
